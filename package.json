@@ -1,0 +1,23 @@
+{
+  "name": "dev-tool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linfiy/dev-tool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/linfiy/dev-tool/issues"
+  },
+  "homepage": "https://github.com/linfiy/dev-tool#readme",
+  "devDependencies": {
+    "fontmin": "^0.9.6",
+    "live-server": "^1.0.0"
+  }
+}
