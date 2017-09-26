@@ -31,7 +31,7 @@ export default new Router({
       component: Videotape
     },
     {
-      path: '/agreement',
+      path: '/agreement/:search',
       name: 'Agreement',
       component: Agreement
     }
