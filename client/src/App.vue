@@ -1,7 +1,15 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    <md-toolbar class="md-dense md-theme-default">
+      <h2 class="md-title" style="flex: 1">欢迎您的使用！</h2>
+    </md-toolbar>
+    
+    <router-link tag="md-button" to="/mahjong" class="md-raised md-primary">麻将组牌</router-link>
+    <router-link tag="md-button" to="/videotape" class="md-raised md-primary">录像回放</router-link>
+    <router-link tag="md-button" to="/poker" class="md-raised md-primary">斗地主</router-link>
+    <router-link tag="md-button" to="/agreement" class="md-raised md-primary">接口测试</router-link>
+
+    <router-view style="margin-top: 30px;"></router-view>
   </div>
 </template>
 
@@ -16,8 +24,8 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+.tile img {
+  height: 32px;
 }
 </style>
