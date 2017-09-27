@@ -5,7 +5,7 @@ import Poker from '@/components/Poker'
 import Mahjong from '@/components/mahjong'
 import Videotape from '@/components/videotape'
 import Agreement from '@/components/agreement'
-
+import ZipFont from '@/components/zipfont'
 Vue.use(Router)
 
 export default new Router({
@@ -34,6 +34,11 @@ export default new Router({
       path: '/agreement/:search',
       name: 'Agreement',
       component: Agreement
+    },
+    {
+      path: '/zipfont',
+      name: 'ZipFont',
+      component: ZipFont
     }
   ]
 })
