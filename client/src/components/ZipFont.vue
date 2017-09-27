@@ -71,7 +71,7 @@ export default {
         filterText: this.filterText,
         fontFile: this.uploadFile
       }
-      http.post(location.origin + '/zipfont', params)
+      http.post('http://192.168.1.29:3000' + '/zipfont', params)
       .then(() => console.log('上传成功正在下载'))
       .catch(e => console.log('上传失败请重新尝试' + e))
     }
