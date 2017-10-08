@@ -8,6 +8,7 @@ import Agreement from '@/components/agreement'
 import FormatJSON from '@/components/formatJSON'
 
 import ZipFont from '@/components/zipfont'
+import New from '@/components/New'
 Vue.use(Router)
 
 export default new Router({
@@ -46,6 +47,11 @@ export default new Router({
       path: '/formatJSON',
       name: 'FormatJSON',
       component: FormatJSON
+    },
+    {
+      path: '/new/:operation',
+      name: 'New',
+      component: New
     }
   ]
 })
