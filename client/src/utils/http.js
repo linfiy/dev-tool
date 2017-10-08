@@ -4,11 +4,10 @@ function request (path, option = {}) {
     xhr.addEventListener('readystatechange', function () {
       if (xhr.readyState !== 4) return
       try {
-        const res = JSON.parse(xhr.responseText)
         if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
-          resolve(res)
+          resolve(JSON.parse(xhr.responseText))
         } else {
-          reject(res)
+          reject(xhr.responseText)
         }
       } catch (e) {
         reject(e + xhr.responseText)
