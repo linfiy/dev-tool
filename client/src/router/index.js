@@ -5,6 +5,8 @@ import Poker from '@/components/Poker'
 import Mahjong from '@/components/mahjong'
 import Videotape from '@/components/videotape'
 import Agreement from '@/components/agreement'
+import FormatJSON from '@/components/formatJSON'
+
 import ZipFont from '@/components/zipfont'
 Vue.use(Router)
 
@@ -39,6 +41,11 @@ export default new Router({
       path: '/zipfont',
       name: 'ZipFont',
       component: ZipFont
+    },
+    {
+      path: '/formatJSON',
+      name: 'FormatJSON',
+      component: FormatJSON
     }
   ]
 })

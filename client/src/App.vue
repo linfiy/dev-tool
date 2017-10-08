@@ -9,7 +9,7 @@
     <router-link tag="md-button" to="/poker" class="md-raised md-primary">斗地主</router-link>
     <router-link tag="md-button" to="/agreement/getConf" class="md-raised md-primary">接口测试</router-link>
     <router-link tag="md-button" to="/zipfont" class="md-raised md-accent">压缩字体</router-link>
-    
+    <router-link tag="md-button" to="/formatJSON" class="md-raised md-primary">JSON</router-link>
     <router-view style="margin-top: 30px;"></router-view>
   </div>
 </template>
