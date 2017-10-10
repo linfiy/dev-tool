@@ -39,7 +39,7 @@ export default new Router({
       component: Agreement
     },
     {
-      path: '/zipfont',
+      path: '/zipfont/:download',
       name: 'ZipFont',
       component: ZipFont
     },

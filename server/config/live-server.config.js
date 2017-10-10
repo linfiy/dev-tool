@@ -4,7 +4,8 @@ module.exports = {
   port: 3000,               //端口号
   host: util.getLocalIP(),  //本地局域网IP
   root: './public',
-  open: false,             // 自动打开
+  wait: 1000,
+  open: true,             // 自动打开
 }
 
 /* 
