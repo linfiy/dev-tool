@@ -86,7 +86,7 @@ export default {
         filterText: this.filterText,
         fontFile: this.uploadFile
       }
-      http.post('http://192.168.1.48:3000' + '/zipfont', params)
+      http.post(`http://${location.host}/zipfont`, params)
       .then(data => {
         this.downloadUrl = data.download
         router.push({ path: '/zipfont/' + encodeURIComponent(data.download) })
