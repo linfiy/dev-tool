@@ -7,6 +7,7 @@ import Videotape from '@/components/videotape'
 import Agreement from '@/components/agreement'
 import FormatJSON from '@/components/formatJSON'
 
+import rest from '@/components/rest/Rest'
 import ZipFont from '@/components/zipfont'
 import New from '@/components/New'
 Vue.use(Router)
@@ -52,6 +53,7 @@ export default new Router({
       path: '/new/:operation',
       name: 'New',
       component: New
-    }
+    },
+    { path: '/rest/:project/:protocol', component: rest, name: 'RESTful' }
   ]
 })

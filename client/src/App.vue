@@ -32,4 +32,8 @@ export default {
 .tile img {
   height: 32px;
 }
+
+li {
+  list-style: none;
+}
 </style>
