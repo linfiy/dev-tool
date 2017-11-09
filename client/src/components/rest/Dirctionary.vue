@@ -1,60 +1,33 @@
 <template>
   <div class="rest-dic">
     <div 
-      v-for="project in projects" 
-      :key="project.id">
-      
-      <h2 
-        :class="project.id == idProject && 'select-item'"
-        >
-        {{project.project}} x
+      v-for="(project, index) in state.origin" 
+      :key="index">
+      <h2 :class="index == state.pIndex && 'select-item'"
+      @click="setCurrent(index)">
+        {{ project.project }}
       </h2>
-
-      <ul>
-        <li 
-          class="item"
-          v-for="protocol in project.protocols" 
-          :key="protocol.id"
-          :class="project.id == idProject && protocol.id == idProtocol && 'select-item'"
-          @click="routerPush(project.id, protocol.id)">
-          <span v-text="protocol.name"></span>
-        </li>
-      </ul>
     </div>
   </div>
 </template>
 <script>
-import router from '../../router'
-// test
-import testJson from './testJSON'
-// test end
 export default {
   data () {
-    return {
-      // read store
-      projects: testJson
-    }
+    return {}
   },
   computed: {
-    idProject () {
-      return this.$route.params.project
-    },
-    idProtocol () {
-      return this.$route.params.protocol
+    state () {
+      return this.$store.state.rest
     }
   },
   methods: {
-    routerPush (projectID, protocolID) {
-      router.push({
-        path: `/rest/${projectID}/${protocolID}`
-      })
+    setCurrent (index) {
+      this.$store.dispatch('setCurrentProject', index)
     },
     addProject () {
       // write store
     },
-
-    addProtocol () {
-      // write store
+    editProjectName () {
     }
   }
 }

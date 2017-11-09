@@ -3,7 +3,7 @@
   <dictionary></dictionary>
   <div>
     <common-variable></common-variable>
-    <parameter :index="0"></parameter>
+    <tabs></tabs>
     <md-button @click="test">Quest</md-button>
   </div>
 </div> 
@@ -12,12 +12,16 @@
 import Parameter from './Parameter'
 import Dictionary from './Dirctionary'
 import CommonVariable from './CommonVariable'
+import Tabs from './Tabs'
 import store from '../../store'
 // test
 import testJson from './testJSON'
 
+store.dispatch('initialize', testJson)
+
 export default {
-  components: { Parameter, Dictionary, 'common-variable': CommonVariable },
+  components: { Parameter, Dictionary, 'common-variable': CommonVariable, Tabs },
+  store,
   data () {
     return {
       projectID: this.$route.params.project,
@@ -30,7 +34,6 @@ export default {
     }
   },
   mounted () {
-    store.dispatch('initialize', testJson)
   }
 }
 </script>

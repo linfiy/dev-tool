@@ -1,6 +1,6 @@
 <template>
   <div class="parameter">
-    <div v-for="p in params" :key="p.name">
+    <div v-for="p in quest.parameter[index]" :key="p.name">
       <span v-text="p.name"></span>
       <parameter v-if="p.type === 13" :index="p.value"></parameter>
       <span 
@@ -11,31 +11,20 @@
   </div>
 </template>
 <script>
-// 递归组件
-
-// test
-import testJson from './testJSON'
-// test end
-
-import { getProtocol, getProject } from './rest-util'
-
+// 递归组件 需要指定 name
 export default {
   name: 'parameter',
   props: ['index'],
   data () {
     return {
-      variables: getProject(testJson, this.$route.params.project).common
-    }
-  },
-  methods: {
-    getVarName (id) {
-      return this.variables.filter(v => v.id === id)[0].name
     }
   },
   computed: {
-    params () {
-      return getProtocol(testJson, this.$route.params.protocol, this.$route.params.project)
-      .parameter[this.index]
+    quest () {
+      return this.$store.getters.curQuest
+    },
+    variables () {
+      return this.$store.getters.curProject.vars
     }
   }
 }
