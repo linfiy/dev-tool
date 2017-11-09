@@ -1,5 +1,6 @@
 <template>
   <div class="rest-common">
+    {{ test }}
     <div>url: {{ url }}</div>
     <div v-for="(variable, index) in variables" :key="index">
       <span v-text="variable.name"></span>
@@ -12,6 +13,7 @@
 // test
 import testJson from './testJSON'
 import { getProject } from './rest-util'
+import store from '../../store'
 
 // test end
 export default {
@@ -21,6 +23,7 @@ export default {
     }
   },
   computed: {
+    test: () => store.state.rest.intForTest,
     variables () {
       return getProject(testJson, this.$route.params.project).common
     },

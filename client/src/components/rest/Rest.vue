@@ -4,7 +4,7 @@
   <div>
     <common-variable></common-variable>
     <parameter :index="0"></parameter>
-    <md-button>Quest</md-button>
+    <md-button @click="test">Quest</md-button>
   </div>
 </div> 
 </template>
@@ -12,6 +12,7 @@
 import Parameter from './Parameter'
 import Dictionary from './Dirctionary'
 import CommonVariable from './CommonVariable'
+import store from '../../store'
 
 export default {
   components: { Parameter, Dictionary, 'common-variable': CommonVariable },
@@ -19,6 +20,11 @@ export default {
     return {
       projectID: this.$route.params.project,
       protocolID: this.$route.params.protocol
+    }
+  },
+  methods: {
+    test () {
+      store.dispatch('increazing')
     }
   }
 }
