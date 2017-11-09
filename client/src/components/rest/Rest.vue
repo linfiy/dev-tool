@@ -13,6 +13,8 @@ import Parameter from './Parameter'
 import Dictionary from './Dirctionary'
 import CommonVariable from './CommonVariable'
 import store from '../../store'
+// test
+import testJson from './testJSON'
 
 export default {
   components: { Parameter, Dictionary, 'common-variable': CommonVariable },
@@ -24,8 +26,11 @@ export default {
   },
   methods: {
     test () {
-      store.dispatch('increazing')
+      console.log(1111)
     }
+  },
+  mounted () {
+    store.dispatch('initialize', testJson)
   }
 }
 </script>

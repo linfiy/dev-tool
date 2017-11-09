@@ -37,15 +37,36 @@
     </div>
     <div class="btn-area">
       <div v-show="hasWan">
-        <mj-btn v-for="i in 9" :tile-name="i" :sign="remainingNum(i)" @click.native="push(i)"></mj-btn>
+        <mj-btn
+          v-for="i in 9" 
+          :key="i"
+          :tile-name="i" 
+          :sign="remainingNum(i)" 
+          @click.native="push(i)"></mj-btn>
       </div>
       <div v-show="hasTiao">
-        <mj-btn v-for="i in 9" :tile-name="i + 16" :sign="remainingNum(i+16)" @click.native="push(i + 16)"></mj-btn>
+        <mj-btn 
+          v-for="i in 9" 
+          :key="i"
+          :tile-name="i + 16" 
+          :sign="remainingNum(i+16)" 
+          @click.native="push(i + 16)"></mj-btn>
       </div>
       <div v-show="hasTong">
-        <mj-btn v-for="i in 9" :tile-name="i + 32" :sign="remainingNum(i+32)" @click.native="push(i + 32)"></mj-btn>
+        <mj-btn 
+          v-for="i in 9"
+          :key="i" 
+          :tile-name="i + 32" 
+          :sign="remainingNum(i+32)" 
+          @click.native="push(i + 32)"></mj-btn>
       </div>
-      <mj-btn v-show="hasWind" v-for="i in 4" :tile-name="i + 48" :sign="remainingNum(i+48)" @click.native="push(i + 48)"></mj-btn>
+      <mj-btn 
+        v-show="hasWind" 
+        v-for="i in 4" 
+        :key="i"
+        :tile-name="i + 48" 
+        :sign="remainingNum(i+48)" 
+        @click.native="push(i + 48)"></mj-btn>
       <mj-btn v-show="hasArrowType == 1 || hasArrowType == 2" :tile-name="53" :sign="remainingNum(53)" @click.native="push(53)"></mj-btn>
       <mj-btn v-show="hasArrowType == 1" :tile-name="54" :sign="remainingNum(54)" @click.native="push(54)"></mj-btn>
       <mj-btn v-show="hasArrowType == 1 || hasArrowType == 3" :tile-name="55" :sign="remainingNum(55)" @click.native="push(55)"></mj-btn>

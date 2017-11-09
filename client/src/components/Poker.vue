@@ -3,7 +3,12 @@
   <div class="col">
     <div class="btn-area">
       <div>
-        <mj-btn v-for="card in cards" :tile-name="card" :sign="remainingNum(card)" @click.native="push(card)" ></mj-btn>
+        <mj-btn 
+          v-for="(card, index) in cards"
+          :key="index"
+          :tile-name="card" 
+          :sign="remainingNum(card)" 
+          @click.native="push(card)" ></mj-btn>
       </div>
       <hr style="margin-bottom: 30px;">
       <h3 v-show="needCard.length">{{ needCard }}&nbsp;&nbsp;

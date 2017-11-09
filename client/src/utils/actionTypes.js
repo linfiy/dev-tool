@@ -31,4 +31,4 @@ export const KOUCARD = 25   // 扣四
 export const YIKOUXIANG = 26 // 一口香
 export const QIANGGANGHU = 27 // 抢杠胡
 export const TUIDABING = 28 // 推大饼
-export const GUOPIA = 29 // 过牌
+export const GUOPAI = 29 // 过牌

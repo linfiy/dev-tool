@@ -2,7 +2,7 @@
 <div>
   <div style="width: 240px; position: absolute; top: 120px; left: 0; border-right: 1px solid ">
     <md-list>
-      <md-list-item v-for="(value, key) in agreementList">
+      <md-list-item v-for="(value, key) in agreementList" :key="key">
         <md-button v-on:click="routerGo(key)"
                    v-bind:class="{ true: 'md-warn', false: '' }[key === $route.params.search]">
           {{ value.act }}
@@ -40,7 +40,7 @@
 
     <p style="color: red; font-size: 26px;">parameter: </p>
 
-    <md-layout md-gutter v-for="list in parameterList">
+    <md-layout md-gutter v-for="(list, index) in parameterList" :key="index">
       <md-layout md-flex="50">
         <md-input-container>
           <label>{{ list.name }}{{ list.label }}</label>
