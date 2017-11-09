@@ -1,6 +1,6 @@
 <template>
 <div>
-  <md-tabs @change="onChange">
+  <md-tabs @change="onChange" v-show="quests">
     <md-tab 
       v-for="(quest, index) in quests"
       :key="index" 
@@ -26,7 +26,8 @@ export default {
   },
   computed: {
     quests () {
-      return this.$store.getters.curProject.quests
+      var currentProject = this.$store.getters.curProject
+      return currentProject ? currentProject.quests : null
     }
   }
 }

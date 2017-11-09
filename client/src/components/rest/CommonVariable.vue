@@ -1,5 +1,5 @@
 <template>
-  <div class="rest-common">
+  <div class="rest-common" v-show="project">
     <div>url: {{ project.url }}</div>
     <div v-for="(variable, index) in project.vars" :key="index">
       <span v-text="variable.name"></span>
