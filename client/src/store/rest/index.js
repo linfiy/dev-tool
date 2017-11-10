@@ -1,4 +1,5 @@
 import * as types from './mutation-types'
+import * as protoActions from './action.proto'
 
 const rest = {
   state: {
@@ -44,13 +45,16 @@ const rest = {
       commit(types.initOrigin, o)
       commit(types.setCurrent, { pIndex: o.length - 1, qIndex: -1 })
     },
-    setCurrentProject ({ state, commit }, pIndex, qIndex = 0) {
+    setCurrentProject ({ state, commit }, { pIndex, qIndex = 0 }) {
       commit(types.setCurrent, { pIndex, qIndex })
     },
 
     setCurrentQuest ({ state, commit }, qIndex) {
       commit(types.setCurrent, { pIndex: state.pIndex, qIndex })
-    }
+    },
+    addProto: protoActions.addProto,
+    delProto: protoActions.delProto,
+    editProto: protoActions.editProto
   },
   getters: {
     curProject: state => state.origin[state.pIndex] || null,

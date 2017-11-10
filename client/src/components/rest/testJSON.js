@@ -1,5 +1,5 @@
 export default [{
-  project: '协议模板',
+  name: '协议模板',
   url: 'http://aqaaa.www.ccc',
   vars: [
     { name: '版本号', value: '3.0.2', type: 1 },
@@ -39,7 +39,7 @@ export default [{
     ]]
   }]
 }, {
-  project: '沧州协议测试',
+  name: '沧州协议测试',
   url: 'http://aqaaa.www.ccc',
   vars: [
     { name: '版本号', value: '3.0.2', type: 1 },

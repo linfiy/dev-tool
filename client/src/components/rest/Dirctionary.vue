@@ -5,7 +5,7 @@
       :key="index">
       <h2 :class="index == state.pIndex && 'select-item'"
       @click="setCurrent(index)">
-        {{ project.project }}
+        {{ project.name }}
       </h2>
     </div>
   </div>
@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     setCurrent (index) {
-      this.$store.dispatch('setCurrentProject', index)
+      this.$store.dispatch('setCurrentProject', { pIndex: index, qIndex: 0 })
     },
     addProject () {
       // write store

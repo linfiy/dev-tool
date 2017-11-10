@@ -14,7 +14,6 @@ import Dictionary from './Dirctionary'
 import CommonVariable from './CommonVariable'
 import Tabs from './Tabs'
 import store from '../../store'
-// test
 import testJson from './testJSON'
 
 store.dispatch('initialize', testJson)
@@ -24,13 +23,10 @@ export default {
   store,
   data () {
     return {
-      projectID: this.$route.params.project,
-      protocolID: this.$route.params.protocol
     }
   },
   methods: {
     test () {
-      console.log(1111)
     }
   },
   mounted () {
