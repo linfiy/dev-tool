@@ -1,14 +1,21 @@
 <template>
-  <div class="rest-dic">
-    <div 
+<div class="rest-dic">
+  <md-list>
+    <md-list-item 
       v-for="(project, index) in state.origin" 
-      :key="index">
-      <h2 :class="index == state.pIndex && 'select-item'"
+      :key="index"
       @click="setCurrent(index)">
-        {{ project.name }}
-      </h2>
-    </div>
-  </div>
+      <span v-text="project.project"></span>
+      
+      <md-button class="md-icon-button md-list-action">
+        <md-icon class="md-primary">delete</md-icon>
+      </md-button>
+      <md-button class="md-icon-button md-list-action">
+        <md-icon class="md-primary">delete</md-icon>
+      </md-button>
+    </md-list-item>
+  </md-list>
+</div>
 </template>
 <script>
 export default {
@@ -36,7 +43,7 @@ export default {
 .rest-dic {
   width: 270px;
 }
-
+/* 
 .rest-dic h2 {
   padding-left: 30px;
   font-size: 20px;
@@ -63,5 +70,5 @@ export default {
 h2.select-item {
   background: #cd164e;
   color: white;
-}
+} */
 </style>

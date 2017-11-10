@@ -54,6 +54,6 @@ export default new Router({
       name: 'New',
       component: New
     },
-    { path: '/rest/:project/:protocol', component: rest, name: 'RESTful' }
+    { path: '/rest', component: rest, name: 'RESTful' }
   ]
 })
