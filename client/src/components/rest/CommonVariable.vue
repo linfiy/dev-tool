@@ -1,6 +1,12 @@
 <template>
   <div class="rest-common" v-show="project">
-    <div>url: {{ project.url }}</div>
+    <div>url: 
+      <proto-value 
+        :protovalue="project.url.value"
+        :position="[rest.pIndex, 'url']"
+        :type="1"
+      ></proto-value>
+    </div>
     <div v-for="(variable, index) in project.vars" :key="index">
       <proto-name 
         :protoname="variable.name"

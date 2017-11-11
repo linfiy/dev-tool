@@ -21,6 +21,9 @@ export default {
     }
   },
   computed: {
+    protoValue () {
+      return (this.pValue = this.protovalue)
+    }
   },
   methods: {
     enterEditing () {
@@ -33,10 +36,6 @@ export default {
       })
       this.editing = false
       this.displayEditor = false
-    },
-    delProto () {
-      // 修改这个会影响参数对变量的引用
-      this.$store.dispatch('delProto', this.position)
     }
   }
 }

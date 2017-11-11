@@ -4,8 +4,8 @@
     @mouseover="displayEditor = true"
     @mouseout="displayEditor = false"
     >
-      <input v-if="editing" v-model="pName" @blur="changeName">
-      <span v-else v-text="pName"></span>
+      <input v-if="editing" v-model="pName" :shadow="protoName" @blur="changeName">
+      <span v-else v-text="pName" :shadow="protoName"></span>
       
       <span v-show="displayEditor && !editing" @click="enterEditing">editor</span>
       <span v-show="displayEditor && deletable && !editing" @click="delProto">delete</span>
@@ -22,6 +22,9 @@ export default {
     }
   },
   computed: {
+    protoName () {
+      return (this.pName = this.protoname)
+    }
   },
   methods: {
     enterEditing () {

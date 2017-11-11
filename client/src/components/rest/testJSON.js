@@ -1,6 +1,6 @@
 export default [{
   name: '协议模板',
-  url: 'http://aqaaa.www.ccc',
+  url: { value: 'http://aqaaa.www.ccc' },
   vars: [
     { name: '版本号', value: '3.0.2', type: 1 },
     { name: 'uid', value: [0, 'data', 'rid'], type: 2 }
