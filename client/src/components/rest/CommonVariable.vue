@@ -1,26 +1,27 @@
 <template>
-  <div class="rest-common" v-show="project">
-    <div>url: 
-      <proto-value 
-        :protovalue="project.url.value"
-        :position="[rest.pIndex, 'url']"
-        :type="1"
-      ></proto-value>
-    </div>
-    <div v-for="(variable, index) in project.vars" :key="index">
-      <proto-name 
-        :protoname="variable.name"
-        :position="[rest.pIndex, 'vars', index]"
-        :deletable="true"
-      ></proto-name>
-      <proto-value 
-        :protovalue="variable.value"
-        :position="[rest.pIndex, 'vars', index]"
-        :type="variable.type"
-      ></proto-value>
-    </div>
-    <div @click="addVar">add</div>
-  </div>
+<div v-show="project" style="padding-bottom: 20px">
+  <md-layout md-gutter>
+    <div class="md-layout md-flex-30 proto-bound">url</div>
+    <proto-value 
+      :protovalue="project.url.value"
+      :position="[rest.pIndex, 'url']"
+      :type="1"
+    ></proto-value>
+  </md-layout>
+  <md-layout md-gutter v-for="(variable, index) in project.vars" :key="index">
+    <proto-name 
+      :protoname="variable.name"
+      :position="[rest.pIndex, 'vars', index]"
+      :deletable="true"
+      :last="index == project.vars.length - 1"
+    ></proto-name>
+    <proto-value 
+      :protovalue="variable.value"
+      :position="[rest.pIndex, 'vars', index]"
+      :type="variable.type"
+    ></proto-value>
+  </md-layout>
+</div>
 </template>
 <script>
 import ProtoName from './ProtoName'

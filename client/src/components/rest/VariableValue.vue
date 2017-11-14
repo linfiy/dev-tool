@@ -5,10 +5,15 @@
   @mouseout="displayEditor = false">
 
   <md-input-container md-inline v-if="editing">
-    <md-input v-model="pValue" :shadow="protoValue"></md-input>
+    <md-select v-model="pValueName" name="pValue" id="pValue">
+      <md-option 
+        :key="index"
+        v-for="(variable, index) in project.vars"
+        :value="variable.name" v-text="variable.name"></md-option>
+    </md-select>
     <i class="md-icon md-theme-default material-icons" @click="changeValue">done</i>
   </md-input-container>
-  <span v-else class="md-flex-90" v-text="pValue" :shadow="protoValue" ></span>
+  <span v-else class="md-flex-90" v-text="pValueName" :shadow="protoValue" ></span>
   
   <i
     class="md-icon md-primary md-theme-default material-icons proto-edit-icon"
@@ -23,12 +28,15 @@ export default {
     return {
       displayEditor: false,
       editing: false,
-      pValue: this.protovalue
+      pValueName: this.$store.getters.curProject.vars[this.protovalue].name
     }
   },
   computed: {
+    project () {
+      return this.$store.getters.curProject
+    },
     protoValue () {
-      return (this.pValue = this.protovalue)
+      return (this.pValueName = this.project.vars[this.protovalue].name)
     }
   },
   methods: {

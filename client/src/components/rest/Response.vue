@@ -1,5 +1,7 @@
 <template>
-  
+<div>
+  Response
+</div>
 </template>
 <script>
 export default {}

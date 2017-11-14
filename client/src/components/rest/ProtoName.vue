@@ -1,19 +1,34 @@
 <template>
-  <p
-    class="rest-proto-name"
+<div class="md-layout md-flex-30 proto-bound" :class="last && 'add-offset'">
+  <div
+    class="md-layout"
     @mouseover="displayEditor = true"
-    @mouseout="displayEditor = false"
-    >
-      <input v-if="editing" v-model="pName" :shadow="protoName" @blur="changeName">
-      <span v-else v-text="pName" :shadow="protoName"></span>
-      
-      <span v-show="displayEditor && !editing" @click="enterEditing">editor</span>
-      <span v-show="displayEditor && deletable && !editing" @click="delProto">delete</span>
-    </p>
+    @mouseout="displayEditor = false">
+
+    <md-input-container md-inline v-if="editing">
+      <md-input v-model="pName" :shadow="protoName"></md-input>
+      <i class="md-icon md-theme-default material-icons" @click="changeName">done</i>
+    </md-input-container>
+    <!-- <input v-if="editing" v-model="pName" :shadow="protoName" @blur="changeName"> -->
+    <span v-else class="md-flex-60" v-text="pName" :shadow="protoName"></span>
+    
+    <i
+      class="md-icon md-primary md-theme-default material-icons proto-edit-icon"
+      v-show="displayEditor && !editing" 
+      @click="enterEditing">editor</i>
+    <i
+      class="md-icon md-accent md-theme-default material-icons proto-edit-icon"
+      v-show="displayEditor && deletable && !editing" 
+      @click="delProto">delete</i>
+  </div>
+  <md-button class="proto-add" v-if="last" @click="addProto">
+    <md-icon>add</md-icon>
+  </md-button>
+</div>
 </template>
 <script>
 export default {
-  props: ['protoname', 'position', 'deletable'],
+  props: ['protoname', 'position', 'deletable', 'last'],
   data () {
     return {
       displayEditor: false,
@@ -41,10 +56,33 @@ export default {
     delProto () {
       // 修改这个会影响参数对变量的引用
       this.$store.dispatch('delProto', this.position)
+    },
+    addProto () {
+      this.$store.dispatch('addProto', {
+        position: this.position.slice(0, this.position.length - 1),
+        data: { name: 'KEY', value: 'VALUE', type: 1 }
+      })
     }
   }
 }
 </script>
 <style>
-
+.proto-bound {
+  height: 30px; line-height: 30px; border-bottom: 1px solid #f2f2f2;
+  position: relative;
+}
+.proto-edit-icon {
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 2px;
+  position: relative;
+}
+.proto-add {
+  position: absolute;
+  top: 30px;
+  left: -10px;
+}
+.add-offset {
+  margin-bottom: 40px;
+}
 </style>

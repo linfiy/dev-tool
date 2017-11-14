@@ -5,12 +5,15 @@ const rest = {
   state: {
     origin: [],
     pIndex: -1,
-    qIndex: -1
+    qIndex: -1,
+    res: []
   },
   mutations: {
     [types.initOrigin] (state, o) {
       if (!Array.isArray(o) || o.length === 0) return
       state.origin = o
+      state.res = []
+      o.forEach(p => state.res.push([]))
       if (state.origin.length === 0) return
       state.pIndex = 0
       if (state.origin[0].length === 0) return

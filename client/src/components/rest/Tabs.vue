@@ -1,10 +1,10 @@
 <template>
-<div>
+<div class="rest-tab-container">
   <md-tabs @change="onChange" v-show="quests">
     <md-tab 
       v-for="(quest, index) in quests"
       :key="index" 
-      :id="quest.name" 
+      :id="quest.name + index" 
       :md-label="quest.name">
       <parameter :index="0"></parameter>
     </md-tab>
@@ -20,7 +20,6 @@ export default {
   },
   methods: {
     onChange (qIndex) {
-      console.log(qIndex)
       this.$store.dispatch('setCurrentQuest', qIndex)
     }
   },
@@ -33,6 +32,8 @@ export default {
 }
 </script>
 <style>
-
+.rest-tab-container {
+  padding-bottom: 50px;
+}
 </style>
 

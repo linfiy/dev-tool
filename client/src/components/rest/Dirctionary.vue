@@ -5,11 +5,8 @@
       v-for="(project, index) in state.origin" 
       :key="index"
       @click="setCurrent(index)">
-      <span v-text="project.project"></span>
+      <span v-text="project.name"></span>
       
-      <md-button class="md-icon-button md-list-action">
-        <md-icon class="md-primary">delete</md-icon>
-      </md-button>
       <md-button class="md-icon-button md-list-action">
         <md-icon class="md-primary">delete</md-icon>
       </md-button>
