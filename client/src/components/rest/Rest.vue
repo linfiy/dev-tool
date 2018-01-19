@@ -9,7 +9,7 @@
       <md-button @click="test">Quest</md-button>
     </div>
     <div style="max-width: 50%; flex: 1">
-      <response></response>
+      <response :res="resStr"></response>
     </div>
   </div>
 </div> 
@@ -38,11 +38,15 @@ export default {
   store,
   data () {
     return {
+      resStr: ''
     }
   },
   computed: {
     state () {
       return this.$store.state.rest
+    },
+    project () {
+      return this.$store.getters.curProject
     },
     quest () {
       return this.$store.getters.curQuest
@@ -53,8 +57,12 @@ export default {
   },
   methods: {
     test () {
+      console.log(this.project.url.value)
       this.questData.parameter = JSON.stringify(this.questData.parameter)
-      http.get('http://test.linfiy.com/mahjong/game_s_http_cangzhou/index.php', this.questData)
+      http.get(this.project.url.value, this.questData)
+      .then((res) => {
+        this.resStr = JSON.stringify(res)
+      })
       // console.log(this.questData)
     }
   },

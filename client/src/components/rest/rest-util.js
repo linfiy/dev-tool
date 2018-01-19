@@ -13,5 +13,6 @@ export const transToDisplay = val => {
 }
 
 export const transToValue = display => {
-  if (typeof val === 'string') return `"${display}"`
+  if (display.match(/'|"/) === null) return JSON.parse(display)
+  return display.replace(/^'|"/, '').replace(/'|"$/, '')
 }
