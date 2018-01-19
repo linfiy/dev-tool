@@ -17,19 +17,19 @@
 </div>
 </template>
 <script>
-import { transForDisplay, transForValue } from './rest-util'
+import { transToDisplay, transToValue } from './rest-util'
 export default {
   props: ['protovalue', 'position', 'type'],
   data () {
     return {
       displayEditor: false,
       editing: false,
-      pValue: transValueForDisplay(this.protovalue)
+      pValue: transToDisplay(this.protovalue)
     }
   },
   computed: {
     protoValue () {
-      return (this.pValue = transValueForDisplay(this.protovalue))
+      return (this.pValue = transToDisplay(this.protovalue))
     }
   },
   methods: {
@@ -39,7 +39,7 @@ export default {
     },
     changeValue () {
       this.$store.dispatch('editProto', {
-        position: this.position, type: 'value', newName: transDisplayForValue(this.pValue)
+        position: this.position, type: 'value', newName: transToValue(this.pValue)
       })
       this.editing = false
       this.displayEditor = false

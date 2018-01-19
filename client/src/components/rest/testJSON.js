@@ -16,13 +16,13 @@ export default [{
       // 多级参数
       { name: 'mod', type: 1, value: 'Business' },
       { name: 'act', type: 1, value: 'get_conf' },
-      { name: 'platform', type: 1, value: 'gfplay' },
-      { name: 'mod', type: 1, value: 'Business' },
-      { name: 'act', type: 1, value: 'get_conf' },
-      { name: 'platform', type: 1, value: 'gfplay' },
-      { name: 'mod', type: 1, value: 'Business' },
-      { name: 'act', type: 1, value: 'get_conf' },
       { name: 'platform', type: 1, value: 'gfplay' }
+      // { name: 'mod', type: 1, value: 'Business' },
+      // { name: 'act', type: 1, value: 'get_conf' },
+      // { name: 'platform', type: 1, value: 'gfplay' },
+      // { name: 'mod', type: 1, value: 'Business' },
+      // { name: 'act', type: 1, value: 'get_conf' },
+      // { name: 'platform', type: 1, value: 'gfplay' }
     ]]
   }, {
     name: 'get_rule',

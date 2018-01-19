@@ -7,11 +7,11 @@ export const getProtocol = (project, id, pid = 0) => {
   return project.protocols.filter(p => p.id === parseInt(id))[0]
 }
 
-export const transForDisplay = val => {
+export const transToDisplay = val => {
   if (typeof val === 'string') return `"${val}"`
   else return val
 }
 
-export const transForValue = display => {
+export const transToValue = display => {
   if (typeof val === 'string') return `"${display}"`
 }

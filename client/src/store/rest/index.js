@@ -61,7 +61,49 @@ const rest = {
   },
   getters: {
     curProject: state => state.origin[state.pIndex] || null,
-    curQuest: state => state.origin[state.pIndex].quests[state.qIndex] || null
+    curQuest: state => state.origin[state.pIndex].quests[state.qIndex] || null,
+    curQuestFormatData: state => {
+      const quest = state.origin[state.pIndex].quests[state.qIndex] || null
+      if (quest === null) return quest
+      const vars = state.origin[state.pIndex].vars
+      const paramSets = quest.parameter
+      const result = {}
+      const parents = [result]
+      let toTopLen = [0]
+      const params = [paramSets[0]]
+
+      while (parents.length > 0) {
+        const currParams = params[params.length - 1]
+        if (toTopLen[toTopLen.length - 1] === currParams.length) {
+          toTopLen.pop()
+          parents.pop()
+          params.pop()
+          continue
+        }
+
+        const parent = parents[parents.length - 1]
+        const curr = currParams[toTopLen[toTopLen.length - 1]]
+
+        switch (curr.type) {
+          case 1: // 普通
+            parent[curr.name] = curr.value
+            toTopLen[toTopLen.length - 1] += 1
+            break
+          case 12: // commonV
+            parent[curr.name] = vars[curr.value].value
+            toTopLen[toTopLen.length - 1] += 1
+            break
+          case 13:
+            const aimParams = quest.parameter[curr.value]
+            parents.push(parent[curr.name] = {})
+            toTopLen[toTopLen.length - 1] += 1
+            toTopLen.push(0)
+            params.push(aimParams)
+            break
+        }
+      }
+      return result
+    }
   }
 }
 
