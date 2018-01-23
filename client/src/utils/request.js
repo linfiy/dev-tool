@@ -43,6 +43,6 @@ function setParams (url, rootParams, parameter) {
 
 let request = {}
 
-request.test = setParams
+request.get = setParams
 
 export default request

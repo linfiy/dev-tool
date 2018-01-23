@@ -52,14 +52,17 @@
         </span>
       </div>
     </div>
+    <wash-cards :cards="needCard"></wash-cards> 
   </div>
 </div>
 </template>
 
 <script>
 import MJBtn from './PokerMJBtn'
+import WashCards from './WashCards'
+
 export default {
-  components: { 'mj-btn': MJBtn },
+  components: { 'mj-btn': MJBtn, 'wash-cards': WashCards },
   data () {
     return {
       cards: [ 125, 117, 108, 107, 106, 105, 100, 99, 98, 97, 92, 91, 90, 89, 84, 83, 82, 81, 76, 75, 74, 73, 68, 67, 66, 65, 60, 59, 58, 57, 52, 51, 50, 49, 44, 43, 42, 41, 36, 35, 34, 33, 28, 27, 26, 25, 20, 19, 18, 17, 12, 11, 10, 9 ],
@@ -85,7 +88,6 @@ export default {
     },
     //  补全
     completion () {
-      console.log('11111')
       // 剩余牌 arr
       let arr = []
       for (let i = 0; i < this.cards.length; i++) {

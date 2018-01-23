@@ -20,6 +20,8 @@
     <p>
       <button v-on:click="copy" v-show="store.length">点击复制</button>
     </p>
+    <!-- 洗牌组件 --> 
+    <wash-cards :cards="storeToStr"></wash-cards>
   </div>
   <div class="col">
     <div class="select-area checkbox-class">
@@ -77,8 +79,10 @@
 
 <script>
 import MJBtn from './MahjongMJBtn'
+import WashCards from './WashCards'
+
 export default {
-  components: { 'mj-btn': MJBtn },
+  components: { 'mj-btn': MJBtn, 'wash-cards': WashCards },
   data () {
     return {
       manualArr: [],

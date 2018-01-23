@@ -313,7 +313,7 @@ export default {
         parameter[arr[i].name] = arr[i].value
       }
       console.log(this.url, this.rootParams, parameter)
-      request.test(this.url, this.rootParams, parameter)
+      request.get(this.url, this.rootParams, parameter)
       .then((res) => {
         alert(JSON.stringify(res))
       })
