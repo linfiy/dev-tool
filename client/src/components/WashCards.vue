@@ -40,10 +40,12 @@ export default {
       urls: [
         { name: '沧州', url: 'http://test.linfiy.com/mahjong/game_s_http_cangzhou/index.php' },
         { name: '保定newnew', url: 'http://test.linfiy.com/mahjong/game_s_http_baoding_newnew/index.php' },
-        { name: '佳木斯', url: 'http://test.linfiy.com/mahjong/game_s_http_jiamusi_new/index.php' }
+        { name: '佳木斯', url: 'http://test.linfiy.com/mahjong/game_s_http_jiamusi_new/index.php' },
+        { name: '廊坊', url: 'http://test.linfiy.com/mahjong/game_s_http_langfang/index.php' },
+        { name: '天津', url: 'http://test.linfiy.com/mahjong/game_s_http_tianjin/index.php' }
       ],
       versions: [
-        '3.1.1', '3.1.2', '3.1.3', '3.1.4', '3.1.5', '3.1.6',
+        '3.1.1', '3.1.2', '3.1.3', '3.1.4', '3.1.5', '3.1.6', '3.1.7', '3.1.8', '3.1.9',
         '3.0.1', '3.0.2', '3.0.3', '3.0.4', '3.0.5', '3.0.6', '3.0.7', '3.0.8', '3.0.9'
       ]
     }

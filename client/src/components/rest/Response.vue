@@ -1,17 +1,24 @@
 <template>
 <div>
   Response
+  header
   <!-- {{ this.res }} -->
-  {{ res }}
+  status: {{ xhr.status }}
+  {{ getHeader(xhr) }}
+  <hr>
+  <json :str="xhr.responseText"></json>
 </div>
 </template>
 <script>
+import JSONDisplay from '../JSONDisplay/JSONDisplay'
+
 export default {
-  props: ['res'],
-  computed: {
-    display: () => {
-      if (!this.res) return ''
-      return this.res
+  props: ['xhr'],
+  components: { json: JSONDisplay },
+  methods: {
+    getHeader (xhr) {
+      console.log(xhr)
+      return xhr
     }
   }
 }

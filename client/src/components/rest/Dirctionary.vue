@@ -12,6 +12,15 @@
       </md-button>
     </md-list-item>
   </md-list>
+  <md-button>
+    添加
+  </md-button>
+  <md-button>
+    导入
+  </md-button>
+  <md-button>
+    导出
+  </md-button>
 </div>
 </template>
 <script>
@@ -38,7 +47,11 @@ export default {
 </script>
 <style>
 .rest-dic {
+  position: fixed;
   width: 270px;
+  top: 48px;
+  left: 0;
+  bottom: 0;
 }
 /* 
 .rest-dic h2 {

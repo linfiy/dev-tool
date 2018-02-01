@@ -6,7 +6,8 @@ const rest = {
     origin: [],
     pIndex: -1,
     qIndex: -1,
-    res: []
+    res: [],
+    cacheVars: []
   },
   mutations: {
     [types.initOrigin] (state, o) {
@@ -22,9 +23,15 @@ const rest = {
 
     [types.setCurrent] (state, { pIndex, qIndex }) {
       if (state.origin.length <= pIndex) return
+      if (pIndex !== state.pIndex) {
+        state.cacheVars = new Array(state.origin[pIndex].vars.length)
+      }
       state.pIndex = pIndex
       if (state.origin[pIndex].quests.length <= qIndex && qIndex !== -1) return
       state.qIndex = qIndex
+    },
+    [types.setCacheVar] (state, { index, val }) {
+      state.cacheVars[index] = val
     }
   },
   actions: {
@@ -57,7 +64,11 @@ const rest = {
     },
     addProto: protoActions.addProto,
     delProto: protoActions.delProto,
-    editProto: protoActions.editProto
+    editProto: protoActions.editProto,
+    saveVar ({ state, commit }, { index, val }) {
+      console.log('!!!!!!!!!!!!!!1')
+      commit(types.setCacheVar, { index, val })
+    }
   },
   getters: {
     curProject: state => state.origin[state.pIndex] || null,
@@ -90,10 +101,15 @@ const rest = {
             toTopLen[toTopLen.length - 1] += 1
             break
           case 12: // commonV
-            parent[curr.name] = vars[curr.value].value
+            if (vars[curr.value].type === 1) {
+              parent[curr.name] = vars[curr.value].value
+            } else if (vars[curr.value].type === 2) {
+              parent[curr.name] = state.cacheVars[curr.value]
+            }
+            // vars[curr.value].value
             toTopLen[toTopLen.length - 1] += 1
             break
-          case 13:
+          case 13: // 嵌套
             const aimParams = quest.parameter[curr.value]
             parents.push(parent[curr.name] = {})
             toTopLen[toTopLen.length - 1] += 1

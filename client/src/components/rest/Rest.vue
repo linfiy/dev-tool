@@ -1,7 +1,7 @@
 <template>
-<div class="md-layout rest-container">
+<div class="rest-container">
   <dictionary></dictionary>
-  <div style="flex: 1; display: flex">
+  <div class="rest-content">
     <div style="max-width: 50%; flex: 1">
       <common-variable></common-variable>
       <tabs></tabs>
@@ -9,7 +9,7 @@
       <md-button @click="test">Quest</md-button>
     </div>
     <div style="max-width: 50%; flex: 1">
-      <response :res="resStr"></response>
+      <response :xhr="xhr"></response>
     </div>
   </div>
 </div> 
@@ -38,7 +38,7 @@ export default {
   store,
   data () {
     return {
-      resStr: ''
+      xhr: ''
     }
   },
   computed: {
@@ -57,11 +57,36 @@ export default {
   },
   methods: {
     test () {
-      console.log(this.project.url.value)
-      this.questData.parameter = JSON.stringify(this.questData.parameter)
-      http.get(this.project.url.value, this.questData)
-      .then((res) => {
-        this.resStr = JSON.stringify(res)
+      const params = JSON.parse(JSON.stringify(this.questData))
+      for (let key in params) {
+        if (typeof params[key] === 'object' && !Array.isArray(params[key])) {
+          console.log(params[key])
+          params[key] = JSON.stringify(params[key])
+        }
+      }
+      http.get(this.project.url.value, params, true)
+      .then((xhr) => {
+        this.xhr = xhr
+        try {
+          // 更新公用变量的值
+          const resObject = JSON.parse(xhr.response)
+          this.project.vars.map((variable, i) => {
+            console.log(variable)
+            if (variable.type !== 2 || variable.value[0] !== this.state.qIndex) return
+            const uri = variable.value.slice(1)
+
+            console.log('uri' + i, JSON.stringify(uri))
+            let cur = resObject
+            while (uri.length > 0) {
+              cur = cur[uri.shift()]
+            }
+
+            this.$store.dispatch('saveVar', { index: i, val: cur })
+            // this.state.cacheVars[i] = cur
+          })
+        } finally {
+          console.log(222222, JSON.stringify(this.state.cacheVars))
+        }
       })
       // console.log(this.questData)
     }
@@ -74,6 +99,16 @@ export default {
 <style>
 .rest-container {
   font-size: 16px;
+}
+
+.rest-content {
+  position: fixed;
+  left: 270px;
+  top: 48px;
+  right: 0;
+  bottom: 0;
+  overflow: scroll;
+  display: flex;
 }
 </style>
 

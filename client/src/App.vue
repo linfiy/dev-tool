@@ -2,18 +2,14 @@
   <div id="app">
     <md-toolbar class="md-dense md-theme-default">
       <h2 class="md-title" style="flex: 1">欢迎您的使用！</h2>
+      <router-link tag="md-button" to="/mahjong" class="md-raised md-primary">麻将组牌</router-link>
+      <router-link tag="md-button" to="/videotape" class="md-raised md-primary">录像回放</router-link>
+      <router-link tag="md-button" to="/poker" class="md-raised md-primary">斗地主</router-link>
+      <router-link tag="md-button" to="/rest" class="md-raised md-primary">Asker</router-link>
+      <router-link tag="md-button" to="/formatJSON" class="md-raised md-primary">JSON</router-link>
+      <router-link tag="md-button" to="/zipfont/0" class="md-raised md-accent">压缩字体</router-link>
     </md-toolbar>
-    
-    <router-link tag="md-button" to="/mahjong" class="md-raised md-primary">麻将组牌</router-link>
-    <router-link tag="md-button" to="/videotape" class="md-raised md-primary">录像回放</router-link>
-    <router-link tag="md-button" to="/poker" class="md-raised md-primary">斗地主</router-link>
-    <router-link tag="md-button" to="/agreement/getConf" class="md-raised md-primary">接口测试</router-link>
-    <router-link tag="md-button" to="/zipfont/0" class="md-raised md-accent">压缩字体</router-link>
-    <router-link tag="md-button" to="/formatJSON" class="md-raised md-primary">JSON</router-link>
-    <router-link tag="md-button" to="/new/page" class="md-raised md-accent">Json</router-link>
-    
-    <hr>
-    <router-view style="margin-top: 30px;"></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
