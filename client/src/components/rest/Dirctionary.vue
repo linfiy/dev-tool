@@ -15,18 +15,22 @@
   <md-button>
     添加
   </md-button>
-  <md-button>
+  <input type="text" v-model="jsondata">
+  <md-button @click="importJSON">
     导入
   </md-button>
-  <md-button>
+  <md-button @click="exportJSON">
     导出
   </md-button>
 </div>
 </template>
 <script>
+import { copyToClipBoard } from '../../utils/bom'
 export default {
   data () {
-    return {}
+    return {
+      jsondata: ''
+    }
   },
   computed: {
     state () {
@@ -41,6 +45,16 @@ export default {
       // write store
     },
     editProjectName () {
+    },
+
+    exportJSON () {
+      copyToClipBoard(JSON.stringify(this.state.origin))
+      .then(() => window.alert('已复制到剪切板'))
+      .catch((e) => window.alert(e))
+    },
+    importJSON () {
+      console.log(this.jsondata)
+      this.$store.dispatch('initialize', JSON.parse(this.jsondata).projects)
     }
   }
 }

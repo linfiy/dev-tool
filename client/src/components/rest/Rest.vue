@@ -23,10 +23,8 @@ import Tabs from './Tabs'
 import store from '../../store'
 import http from '../../utils/http.js'
 
-import testJson from './testJSON'
-
-store.dispatch('initialize', testJson)
-
+// import testJson from './testJSON'
+// store.dispatch('initialize', testJson)
 export default {
   components: {
     Parameter,
