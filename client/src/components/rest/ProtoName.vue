@@ -1,10 +1,9 @@
 <template>
-<div class="md-layout md-flex-30 proto-bound" :class="last && 'add-offset'">
+<div class="md-layout proto-bound" :class="last && 'add-offset'">
   <div
-    class="md-layout"
+    class="proto-name-box"
     @mouseover="displayEditor = true"
     @mouseout="displayEditor = false">
-
     <md-input-container md-inline v-if="editing">
       <md-input v-model="pName" :shadow="protoName"></md-input>
       <i class="md-icon md-theme-default material-icons" @click="changeName">done</i>
@@ -68,14 +67,20 @@ export default {
 </script>
 <style>
 .proto-bound {
-  height: 30px; line-height: 30px; border-bottom: 1px solid #f2f2f2;
+  height: 26px; line-height: 26px; border-bottom: 1px solid #f2f2f2;
   position: relative;
+  font-size: 12px;
+}
+
+.proto-name-box {
+  width: 100%;
 }
 .proto-edit-icon {
   font-size: 16px;
   cursor: pointer;
   margin: 0 2px;
-  position: relative;
+  /* position: relative; */
+  float: right;
 }
 .proto-add {
   position: absolute;

@@ -1,26 +1,32 @@
 <template>
 <div v-show="project" style="padding-bottom: 20px">
-  <md-layout md-gutter>
-    <div class="md-layout md-flex-30 proto-bound">url</div>
-    <proto-value 
-      :protovalue="project.url.value"
-      :position="[rest.pIndex, 'url']"
-      :type="1"
-    ></proto-value>
-  </md-layout>
-  <md-layout md-gutter v-for="(variable, index) in project.vars" :key="index">
-    <proto-name 
-      :protoname="variable.name"
-      :position="[rest.pIndex, 'vars', index]"
-      :deletable="true"
-      :last="index == project.vars.length - 1"
-    ></proto-name>
-    <proto-value 
-      :protovalue="variable.value"
-      :position="[rest.pIndex, 'vars', index]"
-      :type="variable.type"
-    ></proto-value>
-  </md-layout>
+  <div class="vars-row">
+    <div class="vars-key proto-bound">URL</div>
+    <div class="vars-value">
+      <proto-value 
+        :protovalue="project.url.value"
+        :position="[rest.pIndex, 'url']"
+        :type="1"
+      ></proto-value>
+    </div>
+  </div>
+  <div class="vars-row" v-for="(variable, index) in project.vars" :key="index">
+    <div class="vars-key">
+      <proto-name 
+        :protoname="variable.name"
+        :position="[rest.pIndex, 'vars', index]"
+        :deletable="true"
+        :last="index == project.vars.length - 1"
+      ></proto-name>
+    </div>
+    <div class="vars-value">
+      <proto-value 
+        :protovalue="variable.value"
+        :position="[rest.pIndex, 'vars', index]"
+        :type="variable.type"
+      ></proto-value>
+    </div>
+  </div>
 </div>
 </template>
 <script>
@@ -52,5 +58,14 @@ export default {
 }
 </script>
 <style>
+.vars-row {
+  display: flex;
+}
+.vars-value {
+  flex: 1;
+}
 
+.vars-key {
+  width: 130px;
+}
 </style>

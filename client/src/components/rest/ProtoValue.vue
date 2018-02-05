@@ -1,6 +1,6 @@
 <template>
 <div 
-  class="md-layout md-flex-70 proto-bound"
+  class="md-layout proto-bound proto-value-box"
   @mouseover="displayEditor = true"
   @mouseout="displayEditor = false">
 
@@ -49,6 +49,9 @@ export default {
 </script>
 <style>
 .md-input-container {
-  min-height: 30px; padding: 0; margin: 0;
+  min-height: 26px; padding: 0; margin: 0;
+}
+.proto-value-box {
+  flex: 1;
 }
 </style>

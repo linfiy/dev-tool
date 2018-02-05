@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <md-toolbar class="md-dense md-theme-default">
-      <h2 class="md-title" style="flex: 1">欢迎您的使用！</h2>
+      <h2 class="md-title" style="flex: 1">Tool Box</h2>
       <router-link tag="md-button" to="/mahjong" class="md-raised md-primary">麻将组牌</router-link>
       <router-link tag="md-button" to="/videotape" class="md-raised md-primary">录像回放</router-link>
       <router-link tag="md-button" to="/poker" class="md-raised md-primary">斗地主</router-link>

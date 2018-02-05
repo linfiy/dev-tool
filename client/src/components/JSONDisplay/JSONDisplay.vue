@@ -2,7 +2,7 @@
   <div class="json-display-container">
     <ul v-show="displayChild">
       <li v-for="a in list" :key="a.name">
-        <div class="style-row">
+        <div class="style-row" :class="(a.type !== 'object' || a.value === null) ? 'handle-hover' : ''">
           <!-- key -->
           <span :class="a.type === 'object' ? 'style-warp-key' : 'style-key'">{{ a.key }}</span> :
           <span v-if="Array.isArray(a.value)" :class="{'number': 'style-num', 'string': 'style-str'}[a.type]">{{ a.value }}</span>
@@ -77,9 +77,12 @@ export default {
   content: "\""
 }
 
-.style-row:hover {
+.handle-hover:hover {
   background: #eeeeee;
+
 }
+/* .style-row:hover {
+} */
 
 </style>
 

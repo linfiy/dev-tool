@@ -1,12 +1,14 @@
 <template>
 <div class="parameter" :class="index != 0 && 'param-tab'">
   <md-layout md-gutter v-for="(p, paramIndex) in quest.parameter[index]" :key="p.name">
-    <proto-name 
-      :protoname="p.name"
-      :position="[rest.pIndex, 'quests', rest.qIndex, 'parameter', index, paramIndex]"
-      :deletable="true"
-      :last="paramIndex == quest.parameter[index].length - 1"
-    ></proto-name>
+    <div class="params-key">
+      <proto-name 
+        :protoname="p.name"
+        :position="[rest.pIndex, 'quests', rest.qIndex, 'parameter', index, paramIndex]"
+        :deletable="true"
+        :last="paramIndex == quest.parameter[index].length - 1"
+      ></proto-name>
+    </div>
     <!-- 多级参数 -->
     <parameter v-if="p.type === 13" :index="p.value"></parameter>
     <!-- common variable -->
@@ -64,6 +66,11 @@ export default {
 <style>
 .param-tab {
   flex: 1;
+}
+
+.params-key {
+  width: 130px;
+
 }
 /* .parameter {
   
