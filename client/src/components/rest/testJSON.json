@@ -86,29 +86,42 @@
       ]]
     }]
   }, {
-    "name": "沧州test",
+    "name": "录像回放",
     "url": { "value": "http://test.linfiy.com/mahjong/game_s_http_cangzhou/index.php" },
     "vars": [
-      { "name": "版本号", "value": "3.0.5", "type": 1 },
-      { "name": "uid", "value": [0, "data", "rid"], "type": 2 }
+      { "name": "版本号", "value": "3.1.2", "type": 1 },
+      { "name": "游客标识", "value": "wby0", "type": 1 },
+      { "name": "userID", "value": [0, "data", "user", "uid"], "type": 2 },
+      { "name": "userKey", "value": [0, "data", "user", "key"], "type": 2 }
     ],
     "quests": [{
-      "name": "get_conf",
+      "name": "游客登录",
       "parameter": [[
         { "name": "randy_key", "type": 1, "value": "" },
         { "name": "c_version", "type": 12, "value": 0 },
         { "name": "parameter", "type": 13, "value": 1 }
       ], [
         { "name": "mod", "type": 1, "value": "Business" },
-        { "name": "act", "type": 1, "value": "get_rule" },
-        { "name": "platform", "type": 1, "value": "gfplay_h5" }
+        { "name": "act", "type": 1, "value": "login" },
+        { "name": "platform", "type": 1, "value": "gfplay_h5" },
+        { "name": "access_token", "type": 1, "value": "foo" },
+        { "name": "type", "type": 1, "value": 1 },
+        { "name": "openid", "type": 12, "value": 1 }
       ]]
     }, {
-      "name": "get_rule",
+      "name": "获取录像",
       "parameter": [[
-        { "name": "randy_key", "type": 1, "value": "s" },
-        { "name": "c_version", "type": 12, "value": 1 },
+        { "name": "randy_key", "type": 1, "value": "" },
+        { "name": "c_version", "type": 12, "value": 0 },
         { "name": "parameter", "type": 13, "value": 1 }
+      ], [
+        { "name": "mod", "type": 1, "value": "Business" },
+        { "name": "act", "type": 1, "value": "get_game_log" },
+        { "name": "platform", "type": 1, "value": "gfplay_h5" },
+        { "name": "log_num", "type": 1, "value": "" },
+        { "name": "page", "type": 1, "value": 1 },
+        { "name": "uid", "type": 12, "value": 2 },
+        { "name": "key", "type": 12, "value": 3 }
       ]]
     }]
   }]

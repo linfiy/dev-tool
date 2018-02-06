@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="rest-response">
   Response
   header
   <!-- {{ this.res }} -->
@@ -84,11 +84,9 @@ export default {
 // }
 </script>
 <style>
-.md-whiteframe {
-  width: 100%;
+.rest-response {
+  height: 100%;
+  overflow: scroll;
 }
 
-pre {
-  margin: 0; overflow-x: scroll;
-}
 </style>
