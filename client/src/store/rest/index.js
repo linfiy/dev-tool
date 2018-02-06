@@ -40,7 +40,7 @@ const rest = {
     },
     createProject ({ state, commit }, name) {
       const o = [...state.origin, {
-        project: name,
+        name: name,
         url: '',
         vars: [],
         quests: []

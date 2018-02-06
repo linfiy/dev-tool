@@ -83,7 +83,6 @@ export default {
             // this.state.cacheVars[i] = cur
           })
         } finally {
-          console.log(222222, JSON.stringify(this.state.cacheVars))
         }
       })
       // console.log(this.questData)

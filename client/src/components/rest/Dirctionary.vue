@@ -12,7 +12,7 @@
       </md-button>
     </md-list-item>
   </md-list>
-  <md-button>
+  <md-button @click="addProject">
     添加
   </md-button>
   <input type="text" v-model="jsondata">
@@ -43,12 +43,13 @@ export default {
     },
     addProject () {
       // write store
+      this.$store.dispatch('createProject', '项目' + (this.state.pIndex + 2))
     },
     editProjectName () {
     },
 
     exportJSON () {
-      copyToClipBoard(JSON.stringify(this.state.origin))
+      copyToClipBoard(JSON.stringify({ projects: this.state.origin }))
       .then(() => window.alert('已复制到剪切板'))
       .catch((e) => window.alert(e))
     },
