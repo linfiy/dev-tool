@@ -1,60 +1,65 @@
 <template>
   <div class="json-display-container" v-show="displayChild">
-    <span v-if="k" class="style-key" @click="lap" :class="{object: 'style-object-key-start', array: 'style-array-key-start'}[valueType]">{{ k }}</span>
+    <!-- 属性名，特殊：数组没有 -->
+    <span 
+      v-if="k" 
+      class="style-key"
+      :class="valueType === 'array' || valueType === 'object' ? 'weight-key': ''"
+      @click="lap" >{{ k }}</span>
+    <!-- object - `{` -->
+    <span 
+      v-if="valueType === 'object'" 
+      class="style-object-key-start"
+      @click="lap"
+    ></span>
+    <!-- array - `[` -->
+    <span 
+      v-if="valueType === 'array'" 
+      class="style-array-key-start"
+      @click="lap"
+    ></span>
+    <!-- object -->
     <span v-show="display">
       <ul v-if="valueType === 'object'" class="json-ul">
-        <li v-for="a in result" :key="a.name">
+        <li v-for="(a, index) in result" :key="index">
           <div class="style-row">
-            <!-- <span :class="a.type === 'object' ? 'style-warp-key' : 'style-key'">{{ a.key }}</span> : -->
-            <json :str="JSON.stringify(a.value)" :k="a.key"></json>
+            <json 
+              :k="a.key" 
+              :str="JSON.stringify(a.value)" 
+              :last="index === result.length - 1"></json>
           </div>
         </li>
       </ul>
-      <ul v-if="valueType === 'array'" class="json-ul">
+      <!-- array -->
+      <ul v-else-if="valueType === 'array'" class="json-ul">
         <!-- <span class="style-warp-key">{{ a.key }}</span> : -->
-        <li v-for="a in result" :key="a.name">
-          <json :str="JSON.stringify(a)"></json>
+        <li v-for="(a, index) in result" :key="index">
+          <json :str="JSON.stringify(a)" :last="index === result.length - 1"></json>
         </li>
       </ul>
-      <span v-if="valueType === 'string'" class="style-str">{{ result }}</span>
-      <span v-if="valueType === 'number'" class="style-num">{{ result }}</span>
+      <!-- string -->
+      <span v-else-if="valueType === 'string'" class="style-str">{{ result }}</span>
+      <!-- number -->
+      <span v-else-if="valueType === 'number'" class="style-num">{{ result }}</span>
+      <!-- boolean -->
+      <span v-else-if="valueType === 'boolean'" class="style-num">{{ result }}</span>
     </span>  
 
-    <span v-if="k" :class="{object: 'style-object-key-end', array: 'style-array-key-end'}[valueType]"></span>
-      <!-- <ul v-if="Array.isArray(a.value)">
-              <li v-for="b in a.value" :key="JSON.stringify(b)">
-                <json v-if="typeof b === 'object' && !Array.isArray(b) && a.value" :str="JSON.stringify(a.value)"></json>
-              </li>
-            </ul>
-            <json v-if="a.type === 'object' && !Array.isArray(a.value) && a.value" :str="JSON.stringify(a.value)"></json>
-            <span v-if="a.value === null" class="style-warp-key">null</span>
-            <span v-if="a.value === undefined" class="style-undefined">undefined</span>
-      <span v-if="Array.isArray(a.value)" :class="{'number': 'style-num', 'string': 'style-str'}[a.type]">{{ a.value }}</span> -->
-      <!-- <ul v-if="Array.isArray(a.value)">
-        <li v-for="b in a.value" :key="JSON.stringify(b)">
-          <json v-if="typeof b === 'object' && !Array.isArray(b) && a.value" :str="JSON.stringify(a.value)"></json>
-        </li>
-      </ul>
-      <json v-if="type === 'object' && !Array.isArray(a.value) && a.value" :str="JSON.stringify(a.value)"></json>
-      <span v-if="type === 'null'" class="style-warp-key">null</span>
-      <span v-if="type === 'undefined'" class="style-undefined">undefined</span>
-      <span v-if="type === 'number' || type === 'string'" :class="{'number': 'style-num', 'string': 'style-str'}[a.type]">{{ a.value }}</span> -->
-    <!-- <ul>
-      <li v-for="a in list" :key="a.name">
-        <div class="style-row" :class="(a.type !== 'object' || a.value === null) ? 'handle-hover' : ''">
-          <span :class="a.type === 'object' ? 'style-warp-key' : 'style-key'">{{ a.key }}</span> :
-          <ul v-if="Array.isArray(a.value)">
-            <li v-for="b in a.value" :key="JSON.stringify(b)">
-              <json v-if="typeof b === 'object' && !Array.isArray(b) && a.value" :str="JSON.stringify(a.value)"></json>
-            </li>
-          </ul>
-          <json v-if="a.type === 'object' && !Array.isArray(a.value) && a.value" :str="JSON.stringify(a.value)"></json>
-          <span v-if="a.value === null" class="style-warp-key">null</span>
-          <span v-if="a.value === undefined" class="style-undefined">undefined</span>
-          <span v-if="a.type !== 'object'" :class="{'number': 'style-num', 'string': 'style-str'}[a.type]">{{ a.value }}</span>
-        </div>
-      </li>
-    </ul> -->
+    <!-- object - `}` -->
+    <span 
+      v-if="valueType === 'object'" 
+      class="style-object-key-end"
+      :class="display ? '' : 'lap'"
+      @click="lap"
+    ></span>
+    <!-- array - `]` -->
+    <span 
+      v-if="valueType === 'array'" 
+      class="style-array-key-end"
+      :class="display ? '' : 'lap'"
+      @click="lap"
+    ></span>
+    <span v-if="!last">,</span>
   </div>
 </template>
 <script>
@@ -77,31 +82,8 @@ export default {
     }
   },
   computed: {
-    // result () {
-    //   let result
-    //   try {
-    //     console.log(1)
-    //     let result
-    //     const temp = JSON.parse(typeof this.str === 'string' ? this.str : JSON.stringify(this.str))
-    //     console.log(2, this.valueType)
-    //     if (this.valueType === 'object') {
-    //       result = []
-    //       for (let key in temp) {
-    //         result.push({ key, value: temp[key], type: typeof temp[key] })
-    //       }
-    //     } else {
-    //       result = temp
-    //     }
-    //     console.log(3)
-    //     console.log(result)
-    //   } catch (e) {} finally {}
-
-    //   // result.sort((a, b) => a.key > b.key)
-    //   return result
-    // },
     valueType () {
-      const temp = JSON.parse(this.str)
-      console.log(this.str)
+      const temp = typeof this.str === 'string' ? JSON.parse(this.str) : this.str
       let type = typeof temp
       if (Array.isArray(temp)) type = 'array'
       else if (temp === null) type = 'null'
@@ -111,10 +93,10 @@ export default {
       let result
       if (type === 'object') {
         result = []
-        result = temp
-        // for (let key in temp) {
-        //   result.push({ key, value: temp[key], type: typeof temp[key] })
-        // }
+        // result = temp
+        for (let key in temp) {
+          result.push({ key, value: temp[key], type: typeof temp[key] })
+        }
       } else {
         result = temp
       }
@@ -127,42 +109,48 @@ export default {
 </script>
 <style>
 .json-display-container {
-  font-family: 'Consola'; display: inline-block; padding-left: 1em;
+  font-family: 'Consola'; display: inline-block; padding-left: 1em; font-size: 14px;
 }
 .json-ul {
   padding-left: 0;
 }
 .style-key {
-  color: #06c5e5; font-style: italic;
+  color: #06c5e5;
 }
 
 .style-key::after {
-  content: " : "; font-style: normal;
+  content: " : ";
 }
 
 .style-key:hover { transform: scale(1.1); }
 
-.style-object-key-start {
+.weight-key {
   color: #fc1c71; font-weight: 900; cursor: pointer;
 }
 .style-object-key-start::after {
-  content: " : {"; color: #fc1c71; font-weight: normal;
+  content: "{"; color: #fc1c71; font-weight: normal;
 }
 
 .style-object-key-end::after {
-  content: "}"; color: #fc1c71; font-style: normal;
+  content: "}"; color: #fc1c71;
 }
 
-.style-array-key-start {
-  color: #fc1c71; font-weight: 900; cursor: pointer;
+.style-object-key-end.lap::before, .style-array-key-end.lap::before {
+  content: "..."; color: #AAAAAA; 
+  font-weight: 900; background-color: #eee;
+  margin-right: 5px;
 }
+
+
 .style-array-key-start::after {
-  content: " : ["; color: #fc1c71; font-style: normal; font-weight: normal;
+  content: " ["; color: #fc1c71; font-weight: normal;
 }
 
 .style-array-key-end::after {
-  content: "]"; color: #fc1c71; font-style: normal;
+  content: "]"; color: #fc1c71;
 }
+
+
 
 .style-warp-key:hover {
   cursor: pointer;

@@ -6,7 +6,7 @@
   status: {{ xhr.status }}
   {{ getHeader(xhr) }}
   <hr>
-  <json :str="xhr.responseText"></json>
+  <json :str="xhr.responseText" :last="true"></json>
 </div>
 </template>
 <script>
